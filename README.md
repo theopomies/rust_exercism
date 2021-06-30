@@ -1,6 +1,6 @@
 # Rust Exercism
 
-These are my [Exercism Rus Track](https://exercism.io/my/tracks/rust) solutions.
+These are my [Exercism Rust Track](https://exercism.io/my/tracks/rust) solutions.
 
 They are mainly stored for me to keep them, but also to serve as inspiration.
 
