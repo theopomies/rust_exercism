@@ -13,3 +13,5 @@ Please refer to [Rust's website](https://www.rust-lang.org/learn/get-started) an
 ## Structure
 
 Each folder contains a problem/exercise detailed in it's `README`, `Cargo.toml` to install the right dependencies, a `tests` folder with _tests_ and a `lib.rs` file with my solution.
+
+I know I should split solutions in multiple files (organise my modules) but for the sake of simplicity I don't do it, it makes it much easier to push them to exercism.
