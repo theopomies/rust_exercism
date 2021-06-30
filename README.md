@@ -12,4 +12,4 @@ Please refer to [Rust's website](https://www.rust-lang.org/learn/get-started) an
 
 ## Structure
 
-Each folder contains a problem/exercise detailed in it's `README`, `Cargo.toml` to install the right dependencies, a `tests` folder with _tests_ and a `lib.rs` file with my solution.t
+Each folder contains a problem/exercise detailed in it's `README`, `Cargo.toml` to install the right dependencies, a `tests` folder with _tests_ and a `lib.rs` file with my solution.
