@@ -39,7 +39,7 @@ pub fn palindrome_products(min: u64, max: u64) -> Option<(Palindrome, Palindrome
             }
         }
     }
-    let mut products: Vec<Palindrome> = products.into_iter().map(|p| Palindrome(p)).collect();
+    let mut products: Vec<Palindrome> = products.into_iter().map(Palindrome).collect();
 
     products.sort_by_key(|p| p.into_inner());
     Some((*products.first()?, *products.last()?))
