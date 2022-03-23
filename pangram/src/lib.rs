@@ -5,9 +5,6 @@ pub fn is_pangram(sentence: &str) -> bool {
     sentence
         .to_ascii_lowercase()
         .chars()
-        .fold(HashSet::new(), |mut set, c| {
-            set.insert(c);
-            set
-        })
+        .collect::<HashSet<_>>()
         .is_superset(&"abcdefghijklmnopqrstuvwyxz".chars().collect())
 }
