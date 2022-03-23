@@ -1,18 +1,16 @@
 /// Determines whether the supplied string is a valid ISBN number
-/// I do not use enumerate() because I still need to get the last
-/// Idx, which would imply |(acc, len), (idx, digit)|,
-/// I still get the same result with less bloat
 pub fn is_valid_isbn(isbn: &str) -> bool {
     isbn.chars()
-        .filter(|c| c != &'-')
+        .filter(|&c| c != '-')
         .rev()
-        .try_fold((0, 1), |(acc, len), digit| {
-            let increment = match (digit, len) {
-                ('X', 1) => 10,
-                _ => digit.to_digit(10)?,
-            };
-            Some((acc + increment * len, len + 1))
+        .enumerate()
+        .map(|pos_digit| match pos_digit {
+            (0, 'X') => Some((1, 10)),
+            (pos, digit) => digit.to_digit(10).map(|digit| (pos as u32 + 1, digit)),
         })
-        .map(|(acc, len)| acc % 11 == 0 && len == 11)
+        .try_fold((0, 0), |(acc, _), pos_digit| {
+            pos_digit.map(|(pos, digit)| (acc + pos * digit, pos))
+        })
+        .map(|(acc, len)| acc % 11 == 0 && len == 10)
         .unwrap_or(false)
 }
