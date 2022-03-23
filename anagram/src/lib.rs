@@ -27,7 +27,7 @@ fn reducer<'a>(
 
 pub fn anagrams_for<'a>(word: &str, possible_anagrams: &[&'a str]) -> HashSet<&'a str> {
     let word = word.to_lowercase();
-    
+
     possible_anagrams
         .iter()
         .fold(HashSet::new(), |set, possible_anagram| {
