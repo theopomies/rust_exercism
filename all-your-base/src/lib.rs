@@ -44,15 +44,12 @@ pub fn convert(number: &[u32], from_base: u32, to_base: u32) -> Result<Vec<u32>,
         return Err(Error::InvalidOutputBase);
     }
 
-    let mut total =
-        number
-            .iter()
-            .rev()
-            .enumerate()
-            .try_fold(0, |number, (pow, &digit)| match digit < from_base {
-                false => Err(Error::InvalidDigit(digit)),
-                true => Ok(number + digit * from_base.pow(pow as u32)),
-            })?;
+    let mut total = number
+        .iter()
+        .try_fold(0, |number, &digit| match digit < from_base {
+            false => Err(Error::InvalidDigit(digit)),
+            true => Ok(number * from_base + digit),
+        })?;
 
     if total == 0 {
         return Ok(vec![0]);
@@ -60,13 +57,13 @@ pub fn convert(number: &[u32], from_base: u32, to_base: u32) -> Result<Vec<u32>,
 
     let mut res = vec![];
 
-    loop {
+    while total > 0 {
         let rem = total % to_base;
         total /= to_base;
 
         res.push(rem);
-        if total == 0 {
-            break Ok(res.into_iter().rev().collect());
-        }
     }
+
+    res.reverse();
+    Ok(res)
 }
