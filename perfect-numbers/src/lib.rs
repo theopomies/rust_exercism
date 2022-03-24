@@ -8,18 +8,14 @@ pub enum Classification {
 }
 
 pub fn classify(num: u64) -> Option<Classification> {
-    match num {
-        0 => None,
-        _ => Some(
-            match (1..num)
-                .filter(|divisor| num % divisor == 0)
-                .sum::<u64>()
-                .cmp(&num)
-            {
-                Ordering::Greater => Classification::Abundant,
-                Ordering::Equal => Classification::Perfect,
-                Ordering::Less => Classification::Deficient,
-            },
-        ),
+    match (1..=num / 2)
+        .filter(|divisor| num % divisor == 0)
+        .sum::<u64>()
+        .cmp(&num)
+    {
+        _ if num == 0 => None,
+        Ordering::Greater => Some(Classification::Abundant),
+        Ordering::Equal => Some(Classification::Perfect),
+        Ordering::Less => Some(Classification::Deficient),
     }
 }
