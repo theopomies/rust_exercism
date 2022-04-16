@@ -28,5 +28,5 @@ fn modular_pow(x: u64, mut y: u64, p: u64) -> u64 {
         x = x.pow(2) % p;
     }
 
-    return res;
+    res
 }
